@@ -8,7 +8,7 @@ if(isset($_POST["act"]))
 	$menu=$_POST["menu"];
 	$tensp=$_POST["tensp"];
 	$mota = $_POST['mota'];
-	$gia=$_POST["gia"];$ghichu=$_POST["ghichu"];
+	$gia=$_POST["gia"];$ghichu=$_POST["ghichu"];$soluongban=$_POST["soluongban"];
 	$kd=khongdau2($_POST["tensp"]);
 	$id=md5($kd);
 	$kt="select count(*) from sanpham where id='$id'";
@@ -45,10 +45,10 @@ if(isset($_POST["act"]))
 	{//(3)
 		$n=$_REQUEST["n"];
 		if($n=="menu")
-			$sql="insert into sanpham(id,tensp,mota,hinh,gia,ghichu,id_menu) values ('$id','$tensp','$mota','$newName','$gia','$ghichu',$menu)";
+			$sql="insert into sanpham(id,tensp,mota,hinh,gia,ghichu,soluongban,id_menu) values ('$id','$tensp','$mota','$newName','$gia','$ghichu','$soluongban',$menu)";
 	}//(3)
 	else{
-		$sql="insert into sanpham(id,id_loai,tensp,mota,hinh,gia,ghichu) values ('$id',$loaisp,'$tensp','$mota','$newName','$gia','$ghichu')";}
+		$sql="insert into sanpham(id,id_loai,tensp,mota,hinh,gia,ghichu,soluongban) values ('$id',$loaisp,'$tensp','$mota','$newName','$gia','$ghichu','$soluongban')";}
 //	echo "$sql<hr>";
 	$kq=mysql_query($sql);
 	if(!$kq){
@@ -242,7 +242,11 @@ function comboChange(v)
 	<option value="hangdat">Hàng đặt</option>
     </select>
     </td>
-  </tr>  
+  </tr> 
+  <tr bgcolor="#FFFFFF">
+    <td style="padding-left:80px" height="30">số lượng:</td>
+    <td><input name="soluongban" type="text" maxlength="20" style="width:240px" value="<?php echo "$soluongban"; ?>" onkeyup="valid(this,'numbers')" onblur="valid(this,'numbers')"></td>
+  </tr> 
   <tr>
   	<td align="center" colspan="2" height="35" style="border-bottom:1px solid #CCCCCC ">
     <input name="" type="submit" value="Thêm" class="button" onmouseover="style.background='url(../images/button-2-o.gif)'" onmouseout="style.background='url(../images/button-o.gif)'">

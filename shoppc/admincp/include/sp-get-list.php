@@ -60,7 +60,7 @@ if(isset($_POST["act"]))
 		else{
 		while($r3=mysql_fetch_array($kq3))
 		{
-			$tensp=$r3['tensp']; $mota=$r3['mota'] ; $ghichu=$r3["ghichu"];
+			$tensp=$r3['tensp']; $mota=$r3['mota'] ; $soluongban=$r3["soluongban"];
 			$hinh=$r3['hinh'] ; $gia=number_format($r3['gia'],0,'','.') ;$id=$r3["id"];
 			$sql2="select * from loaisanpham,sanpham where loaisanpham.id_loai=sanpham.id_loai and sanpham.id='$id'";
 			$kq2=mysql_query($sql2);
@@ -76,7 +76,7 @@ if(isset($_POST["act"]))
 	<div style="padding-left:3px; padding-right:3px;"><?php echo "$mota"; ?></div></td>
     <td width="100" align="center" style="border-bottom:1px solid #333; border-right:1px solid #333"><img src="../sanpham/small/<?php echo "$hinh"; ?>" width="90" height="90"></td>
 	<td width="100" align="center" style="border-bottom:1px solid #333; border-right:1px solid #333"><?php echo "$gia"; ?></td>
-	<td width="80" align="center" style="border-bottom:1px solid #333; border-right:1px solid #333"><?php echo "$ghichu"; ?></td>    
+	<td width="80" align="center" style="border-bottom:1px solid #333; border-right:1px solid #333"><?php echo "$soluongban"; ?></td>    
     <td width="50" align="center" style="border-bottom:1px solid #333; border-right:1px solid #333"><a href="?b=sp-update&id=<?php echo $id; ?>">Sửa</a></td>
     <td width="50" align="center" style="border-bottom:1px solid #333; border-right:1px solid #333"><a href="?b=sp-del&id=<?php echo $id; ?>" onclick="return check()">Xóa</a>
     </td>

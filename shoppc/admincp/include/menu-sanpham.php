@@ -7,7 +7,11 @@
    <div align="left">
    <img align="absmiddle" src="../images/towred1-r.gif"><a href="../admincp/?m=sp&b=sp-insert" class="admin-menu-left"> Thêm sản phẩm mới.</a><br>
 	<div style="height:10px"></div>
-	<img align="absmiddle" src="../images/towred1-r.gif"><a href="../admincp/?m=sp&b=sp-list" class="admin-menu-left"> Danh sách sản phẩm</a>    
+  <img align="absmiddle" src="../images/towred1-r.gif"><a href="../admincp/?m=sp&b=sp-insert-available" class="admin-menu-left"> Nhập kho.</a><br>
+	<div style="height:10px"></div>
+  <img align="absmiddle" src="../images/towred1-r.gif"><a href="../admincp/?m=sp&b=sp-delete-available" class="admin-menu-left"> Xuất kho.</a><br>
+  <div style="height:10px"></div>
+	<img align="absmiddle" src="../images/towred1-r.gif"><a href="../admincp/?m=sp&b=sp-list" class="admin-menu-left"> Danh sách sản phẩm</a> 
     </div>
    </td>   
   </tr>

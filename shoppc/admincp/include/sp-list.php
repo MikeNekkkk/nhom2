@@ -32,7 +32,7 @@
     <td align="center" width="100" style="border-right:1px solid #333"><strong>Mô tả</strong></td>
     <td align="center" width="100" style="border-right:1px solid #333"><strong>Hình</strong></td>
     <td align="center" width="100" style="border-right:1px solid #333"><strong>Giá ( VND )</strong></td>
-    <td align="center" width="80" style="border-right:1px solid #333"><strong>Ghi Chú</strong></td>
+    <td align="center" width="80" style="border-right:1px solid #333"><strong>Số lượng</strong></td>
     <td align="center" width="50" style="border-right:1px solid #333"><strong>Sửa</strong></td>
     <td align="center" width="50"><strong>Xóa</strong></td>    
   </tr>  
@@ -75,7 +75,7 @@
 		else{
 		while($r3=mysql_fetch_array($kq3))
 		{
-			$tensp=$r3['tensp']; $mota=$r3['mota'] ; $ghichu=$r3["ghichu"];
+			$tensp=$r3['tensp']; $mota=$r3['mota'] ; $soluongban=$r3["soluongban"];
 			$mota=$r3["mota"];
 			$hinh=$r3['hinh'] ; $gia=number_format($r3['gia'],0,'','.') ;$id=$r3["id"];
 			$sql2="select * from loaisanpham,sanpham where loaisanpham.id_loai=sanpham.id_loai and sanpham.id='$id'";
@@ -93,7 +93,7 @@
 	<div align="center" style="padding-left:3px; padding-right:3px;" onclick="var win=window.open('mota.php?id=<?php echo $id; ?>', 'open_window', 'width=570, height=320, left=0, top=0')">Xem mô tả</div></td>
     <td width="100" align="center" style="border-bottom:1px solid #333; border-right:1px solid #333"><div onclick="var win=window.open('../zoom.php?id=<?php echo $id; ?>', 'open_window', 'width=405, height=530, left=0, top=0')"><img src="../sanpham/small/<?php echo "$hinh"; ?>" width="90" height="90"></div></td>
 	<td width="100" align="center" style="border-bottom:1px solid #333; border-right:1px solid #333"><?php echo "$gia"; ?></td>
-	<td width="80" align="center" style="border-bottom:1px solid #333; border-right:1px solid #333"><?php echo "$ghichu"; ?></td>    
+	<td width="80" align="center" style="border-bottom:1px solid #333; border-right:1px solid #333"><?php echo "$soluongban"; ?></td>    
     <td width="50" align="center" style="border-bottom:1px solid #333; border-right:1px solid #333"><a href="?m=sp&b=sp-update&id=<?php echo $id; ?>">Sửa</a></td>
     <td width="50" align="center" style="border-bottom:1px solid #333; border-right:1px solid #333"><a href="?m=sp&b=sp-del&id=<?php echo $id; ?>" onclick="return check()">Xóa</a>
     </td>

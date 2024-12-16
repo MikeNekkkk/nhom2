@@ -28,20 +28,7 @@ include("check-login.php"); include "connect.php"; ?>
   </div>  
   <br clear="all" />
     <div id="main">  
-    <?php 
-		$m=$_REQUEST["m"];
-		if($m=="thanhvien")
-			include "include/thanhvien.php";		
-		if($m=="lienhe")
-			include "include/lienhe.php";		
-		else{
-			if($m=="lh-del")
-				include "include/lienhe-del.php";
-			else{
-			if($m=="changepw")
-				include "include/changepw.php";
-			else{
-	?>
+    
     	<div id="content-left">       	 
         <?php
        	  $m=$_REQUEST["m"];  
@@ -51,18 +38,6 @@ include("check-login.php"); include "connect.php"; ?>
 		  {
 			case "sp":
 				include "include/menu-sanpham.php";
-			break;
-			case "dh":
-				include "include/menu-donhang.php";
-			break;
-			case "lh":
-				include "include/menu-lienhe.php";
-			break;
-			case "menu":
-				include "include/menu-menu.php";
-			break;
-			case "tv":
-				include "include/menu-thanhvien.php";
 			break;
 			case "mn":
 				include "include/menu-mn.php";
@@ -82,6 +57,12 @@ include("check-login.php"); include "connect.php"; ?>
 		 {
 			case "sp-insert":
 				include "include/sp-insert.php";
+			break;	
+			case "sp-insert-available":
+				include "include/sp-insert-available.php";
+			break;	
+			case "sp-delete-available":
+				include "include/sp-delete-available.php";
 			break;	
 			case "sp-xl-insert":
 				include "include/sp-xl-insert.php";
@@ -104,28 +85,6 @@ include("check-login.php"); include "connect.php"; ?>
 			case "menu-listview":
 				include "include/menu-listview.php";
 			break;			
-			case "gh-list":
-				include "include/gh-list.php";
-			break;	
-			case "gh-guest-list":
-				include "include/gh-guest-list.php";
-			break;
-			case "get-guest-list-end":
-				include "include/gh-guest-finish.php";
-			break;
-			case "gh-chitiet":
-				include "include/gh-chitiet.php";
-			break;
-			case "gh-guest-chitiet":
-				include "include/gh-guest-chitiet.php";
-			break;
-			case "get-list-end":
-				include "include/gh-finish.php";
-			break;	
-			case "tk":
-				include "include/result.php";
-			break;		
-		
 			case "nhomsp-list";
 				include "include/nhomsp-list.php";
 			break;		
@@ -169,7 +128,7 @@ include("check-login.php"); include "connect.php"; ?>
 		 
 	 	 ?>
         </div>  
-     <?php   } } }?>
+   
     </div>
 </div>
 

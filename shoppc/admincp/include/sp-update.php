@@ -1,4 +1,5 @@
 <?php 
+
 if(isset($_POST["act"]))
 {
 	$id=$_POST["id"];
@@ -6,7 +7,7 @@ if(isset($_POST["act"]))
 	$menu=$_POST["menu"];
 	$tensp=$_POST["tensp"];
 	$mota = $_POST['mota'];
-	$gia=$_POST["gia"];$ghichu=$_POST["ghichu"];
+	$gia=$_POST["gia"];$soluongban=$_POST["soluongban"];
 	$kd=khongdau2($_POST["tensp"]);
 	$id2=md5($kd);
 //	echo "$id - $id2";
@@ -16,10 +17,11 @@ if(isset($_POST["act"]))
 	$name=$_POST["oldimage"]; $imgInfo=explode('.', $name);
 	$new=$kd.".".$imgInfo[1];
 //	echo "$name - $new<hr>";
+//Giữ tính chính xác và toàn vẹn của dữ liệu: Các báo cáo, thông kê về doanh thu và khách hàng không bị ảnh hưởng do sự thay đổi ID, vì thông tin cũ vẫn được lưu lại trong hóa đơn.
 	if($file_name==""&&$file_type==""&&$file_size==0)
 	{	
 		if($id2!=$id){
-			$sql5="UPDATE sanpham SET id='$id2', id_loai='$loaisp', tensp='$tensp', mota='$mota', gia='$gia',ghichu='$ghichu',hinh='$new',id_menu='$menu' WHERE id='$id'";
+			$sql5="UPDATE sanpham SET id='$id2', id_loai='$loaisp', tensp='$tensp', mota='$mota', gia='$gia',soluongban='$soluongban',hinh='$new',id_menu='$menu' WHERE id='$id'";
 			$kq5=mysql_query($sql5);
 			$q=mysql_query("update giohang SET id='$id2' where id='$id'");
 			$q2=mysql_query("update hoadon SET id='$id2' where id='$id'");
@@ -34,7 +36,7 @@ if(isset($_POST["act"]))
 			}
 		}
 		else{
-			$sql3="UPDATE sanpham SET id='$id2', id_loai='$loaisp', tensp='$tensp', mota='$mota', gia='$gia',ghichu='$ghichu',id_menu='$menu' WHERE id='$id'";
+			$sql3="UPDATE sanpham SET id='$id2', id_loai='$loaisp', tensp='$tensp', mota='$mota', gia='$gia',soluongban='$soluongban',id_menu='$menu' WHERE id='$id'";
 			$kq3=mysql_query($sql3);
 			if(!$kq3){
 				echo "<script>alert('Có lỗi xảy ra trong quá trình xử lý!!');window.history.go(-1);</script>";}
@@ -80,7 +82,7 @@ if(isset($_POST["act"]))
 				imagejpeg($tmp,$pathfull,100);		   //lưu hình tmp với đường dẫn là pathfull
 				imagedestroy($src); imagedestroy($tmp); //xóa hình tạm khỏi bộ nhớ
 			//********************************resize hinh ********************************
-		$sql4="UPDATE sanpham SET id='$id2', id_loai='$loaisp', tensp='$tensp', mota='$mota',hinh='$newName', gia='$gia',ghichu='$ghichu',id_menu='$menu' WHERE id='$id'";
+		$sql4="UPDATE sanpham SET id='$id2', id_loai='$loaisp', tensp='$tensp', mota='$mota',hinh='$newName', gia='$gia',soluongban='$soluongban',id_menu='$menu' WHERE id='$id'";
 		$kq4=mysql_query($sql4);
 		if(!$kq4)
 			echo "<script>alert('Lỗi! sản phẩm này đã có trong cơ sở dữ liệu!');window.history.go(-1);</script>";
@@ -113,24 +115,6 @@ if(isset($_POST["act"]))
 		return $s2;
 	}
 	
-	function Getmenu($idm)
-	{
-		$sql2 = "SELECT * from menu";
-		$kq2 = mysql_query($sql2);
-		$s2="";
-		$n2=mysql_num_rows($kq2);
-		if($n2>0){
-		while($r2=mysql_fetch_array($kq2))
-		{
-			if($r2["id_menu"]==$idm)
-				$s2.="<option value='".$r2["id_menu"]."' selected>";			
-			else
-				$s2.="<option value='".$r2["id_menu"]."'>";
-			$s2.=$r2["tenmenu"]."</option>";
-		}
-		}
-		return $s2;
-	}
 	
 	function GetGhichu($id)
 	{
@@ -188,7 +172,7 @@ if(isset($_POST["act"]))
 	{
 		$r=mysql_fetch_array($kq);$id_loai=$r["id_loai"];$id_nhom=$r["id_nhom"];
 		$tensp=$r["tensp"];$mota=$r["mota"];$hinh=$r["hinh"];
-		$gia=$r["gia"];$ghichu=$r["ghichu"];$id_menu=$r["id_menu"];
+		$gia=$r["gia"];$soluongban=$r["soluongban"];$id_menu=$r["id_menu"];
 	//	echo "$id_loai";
 ?>
 <table width="740" border="0" cellspacing="0" cellpadding="0">
@@ -234,11 +218,10 @@ if(isset($_POST["act"]))
     <td style="padding-left:80px" height="30">Giá:</td>
     <td><input name="gia" type="text" maxlength="20" style="width:240px" value="<?php echo "$gia"; ?>"></td>
   </tr>
-  <tr>
-    <td style="padding-left:80px" height="30">Ghi chú:</td>
-    <td>
-    <select name="ghichu" style="width:240px">
-	<?php echo GetGhichu($id); ?>
+  <tr bgcolor="#FFFFFF">
+    <td style="padding-left:80px" height="30">số lượng:</td>
+    <td><input name="soluongban" type="text" maxlength="20" style="width:240px" value="<?php echo "$soluongban"; ?>" onkeyup="valid(this,'numbers')" onblur="valid(this,'numbers')"></td>
+  </tr> 
     </select>
     </td>
   </tr>  
